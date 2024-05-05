@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* 수평 정렬 */
+            align-items: center; /* 수직 정렬 */
+            background-color: rgb(30, 30, 30);
+        }
+        body {
+            display: flex;
+            flex-direction: column; /* 요소들을 수직으로 배열 */
+            align-items: center; /* 수직 정렬 */
+        }
+        @keyframes rotateAnimation
+        {
+            from
+            {
+                transform: rotate(0deg);
+            }
+
+            50%
+            {
+                transform:rotate(180deg);
+            }
+
+            to
+            {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveAnimation
+        {
+            from
+            {
+                transform: translateY(0%);
+            }
+
+            to
+            {
+                transform: translateY(-10%);
+            }
+        }
+        @keyframes 상승
+        {
+            from
+            {
+                transform: translateY(0px);
+            }
+            
+            to
+            {
+                transform: translateY(-500px);
+            }
+        }
+        
+        .하양
+        {
+            color:white;
+        }
+        .비포페드로{
+            position: relative;
+            top: 500px;
+            visibility: hidden;
+            /*animation: 상승 0.6s ease-in-out forwards;*/
+        }
+        .페드로 {
+            position: relative; /* 이미지를 포함하는 div를 relative로 설정 */
+            width: 500px;
+            height: 500px;
+            background-color: #000000;
+            border-radius: 500px;
+            display: flex; /* 내부의 요소를 수직 및 수평으로 정렬하기 위해 추가 */
+            justify-content: center; /* 내부의 요소를 수평으로 정렬 */
+            align-items: center; /* 내부의 요소를 수직으로 정렬 */
+            overflow: hidden;
+            animation: rotateAnimation 4s linear infinite;
+            transition:background-color 1s ease;
+            transition: transform 1s ease; /* translateY 속성에 대한 변화를 1초 동안 ease 함수로 적용 */
+        }
+
+        .페드로 img {
+            position: absolute; /* 이미지를 상대 위치로 설정하여 div에 대해 절대 위치로 배치 */
+            top: 0;
+            left: 0;
+            opacity: 0; /* 클릭 전에는 투명하게 설정 */
+            margin-top: 225px;
+            max-width: 100%; /* 이미지가 부모 요소에 맞게 조절되도록 함 */
+            max-height: 100%; /* 이미지가 부모 요소에 맞게 조절되도록 함 */
+            animation: moveAnimation 0.2s linear infinite alternate;
+            transition: opacity 1s ease;
+        }
+
+        /* 클릭 시 이미지의 투명도를 조절하여 나타나게 함 */
+        .페드로.clicked img {
+            opacity: 1;
+        }
+        .페드로.clicked{
+            background-color: #fffcf1;
+        }
+    </style>
+</head>
+<body onclick="작동()">
+    <audio id="audio">
+        <source src="빼드로.weba" type="audio/webm">
+    </audio>
+    <h1 class="하양">빼드로빼드로빼드로</h1>
+    <div class="비포페드로">
+        <div class="페드로" id="pedro">
+            <img src="https://png.pngtree.com/png-vector/20240413/ourmid/pngtree-a-raccoon-is-sitting-on-white-background-png-image_12284703.png">
+        </div>
+    </div>
+
+    <script>
+        // div를 클릭하면 음악을 재생하고 이미지를 나타나게 하는 함수
+        document.getElementById("pedro").addEventListener("click", function() {
+            var audio = document.getElementById("audio");
+            audio.currentTime = 33;
+            audio.play();
+            // 'clicked' 클래스를 추가하여 이미지가 나타나도록 함
+            this.classList.add("clicked");
+        });
+
+        // body를 클릭하면 비포페드로의 애니메이션을 시작하는 함수
+        function 작동(){
+            var 비포페드로 = document.querySelector('.비포페드로');
+            비포페드로.style.visibility = 'visible'
+            비포페드로.style.animation = '상승 0.6s ease-in-out forwards';
+        }
+    </script>
+</body>
+</html>
